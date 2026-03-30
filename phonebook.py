@@ -2,7 +2,7 @@ import csv
 from connect import get_connection
 
 
-# Создание таблицы
+# Кесте құру
 def create_table():
     conn = get_connection()
     cur = conn.cursor()
@@ -19,7 +19,7 @@ def create_table():
     print("Таблица создана.")
 
 
-# Добавить из CSV
+# CSV ішінен қосу
 def insert_from_csv():
     conn = get_connection()
     cur = conn.cursor()
@@ -35,7 +35,7 @@ def insert_from_csv():
     print("Контакты из CSV загружены.")
 
 
-# Добавить с консоли
+# Консольден қосу
 def insert_from_console():
     first_name = input("Имя: ")
     last_name  = input("Фамилия: ")
@@ -51,7 +51,7 @@ def insert_from_console():
     print("Контакт добавлен.")
 
 
-# Обновить контакт
+# Контактіні жаңарту
 def update_contact():
     old_phone = input("Телефон контакта для обновления: ")
     new_name  = input("Новое имя: ")
@@ -67,7 +67,7 @@ def update_contact():
     print("Контакт обновлён.")
 
 
-# Поиск контактов
+# Контактілерді іздеу
 def search_contacts():
     keyword = input("Введи имя или префикс телефона: ")
     conn = get_connection()
@@ -85,7 +85,7 @@ def search_contacts():
             print(f"ID:{row[0]}  {row[1]} {row[2]}  {row[3]}")
 
 
-# Удалить контакт
+# Контактіні жою
 def delete_contact():
     phone = input("Телефон контакта для удаления: ")
     conn = get_connection()
@@ -96,7 +96,7 @@ def delete_contact():
     print("Контакт удалён.")
 
 
-# Главное меню
+# Негізгі мәзір
 def main():
     create_table()
     while True:
