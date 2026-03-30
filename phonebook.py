@@ -16,7 +16,7 @@ def create_table():
     """)
     conn.commit()
     conn.close()
-    print("Таблица создана.")
+    print("Кесте құрылды.")
 
 
 # CSV ішінен қосу
@@ -32,13 +32,13 @@ def insert_from_csv():
             )
     conn.commit()
     conn.close()
-    print("Контакты из CSV загружены.")
+    print("CSV контактілері жүктелді.")
 
 
 # Консольден қосу
 def insert_from_console():
-    first_name = input("Имя: ")
-    last_name  = input("Фамилия: ")
+    first_name = input("Аты: ")
+    last_name  = input("Тегі: ")
     phone      = input("Телефон: ")
     conn = get_connection()
     cur = conn.cursor()
@@ -48,14 +48,14 @@ def insert_from_console():
     )
     conn.commit()
     conn.close()
-    print("Контакт добавлен.")
+    print("Контакт қосылды.")
 
 
 # Контактіні жаңарту
 def update_contact():
-    old_phone = input("Телефон контакта для обновления: ")
-    new_name  = input("Новое имя: ")
-    new_phone = input("Новый телефон: ")
+    old_phone = input("Жаңартылатын контактінің телефоны: ")
+    new_name  = input("Жаңа аты: ")
+    new_phone = input("Жаңа телефон: ")
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
@@ -64,12 +64,12 @@ def update_contact():
     )
     conn.commit()
     conn.close()
-    print("Контакт обновлён.")
+    print("Контакт жаңартылды.")
 
 
 # Контактілерді іздеу
 def search_contacts():
-    keyword = input("Введи имя или префикс телефона: ")
+    keyword = input("Атын немесе телефон префиксін енгіз: ")
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
@@ -79,7 +79,7 @@ def search_contacts():
     rows = cur.fetchall()
     conn.close()
     if not rows:
-        print("Ничего не найдено.")
+        print("Ештеңе табылмады.")
     else:
         for row in rows:
             print(f"ID:{row[0]}  {row[1]} {row[2]}  {row[3]}")
@@ -87,26 +87,26 @@ def search_contacts():
 
 # Контактіні жою
 def delete_contact():
-    phone = input("Телефон контакта для удаления: ")
+    phone = input("Жойылатын контактінің телефоны: ")
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("DELETE FROM phonebook WHERE phone=%s", (phone,))
     conn.commit()
     conn.close()
-    print("Контакт удалён.")
+    print("Контакт жойылды.")
 
 
 # Негізгі мәзір
 def main():
     create_table()
     while True:
-        print("\n1. Загрузить из CSV")
-        print("2. Добавить вручную")
-        print("3. Обновить контакт")
-        print("4. Найти контакт")
-        print("5. Удалить контакт")
-        print("0. Выход")
-        choice = input("Выбор: ")
+        print("\n1. CSV-тен жүктеу")
+        print("2. Қолмен қосу")
+        print("3. Контактіні жаңарту")
+        print("4. Контактіні іздеу")
+        print("5. Контактіні жою")
+        print("0. Шығу")
+        choice = input("Таңдау: ")
 
         if choice == "1":
             insert_from_csv()
